@@ -81,12 +81,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             position: absolute;
             margin-left: -30px;
             margin-top: 10px;
+            color: black;
         }
         .container {
             position: relative;
             max-width: 100%;
-            
+            background-color: rgba(211, 211, 211, 0.5);
+            color: white;
             text-align: center;
+            border-radius: 20px;
         }
         .password-wrapper {
             position: relative;
