@@ -2,6 +2,9 @@
 session_start();
 include('../connection.php');
 
+// Initialize error message variable
+$error_message = "";
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $student_id = $_POST['studentId'];
     $password = $_POST['password'];
@@ -26,7 +29,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             exit;
         }
     } else {
-        echo "";
+        // Set error message if login fails
+        $error_message = "Invalid Student ID or Password.";
     }
 
     $stmt->close();
@@ -228,7 +232,7 @@ $connection->close();
         font-size: 1.5rem;
         color: white;
         margin-top: 2rem;
-     
+        }
     }
     .field {
         width: 15rem;
@@ -239,6 +243,24 @@ $connection->close();
     .pass.field {
         margin-top: 2rem;
     }
+    .error-message {
+    color: rgb(154, 42, 42);
+    font-size: 1rem;
+    margin-top: 1px;
+    margin-bottom: -20px;
+    text-align: center;
+    background-color: pink;
+    padding: 10px;
+    border-radius: 15px;
+
+    opacity: 0; /* Initial opacity */
+    transition: opacity 1s ease-in-out; /* Transition for fade-in and fade-out */
+    visibility: hidden; /* Hidden by default */
+}
+.error-message.show {
+    opacity: 1; /* Fully visible */
+    visibility: visible; /* Ensure visibility */
+}
     @media screen and (max-width:465px) {
         .title {
             font-size: 2rem;
@@ -249,6 +271,18 @@ $connection->close();
         font-size: 1.5rem;
         color: white;
         margin-top: 2rem;
+        }
+        .error-message {
+    color: rgb(154, 42, 42);
+    font-size: 1rem;
+    margin-top: 1px;
+    margin-bottom: -20px;
+    text-align: center;
+    background-color: pink;
+    padding: 10px;
+    border-radius: 15px;
+    
+}
         
         .loginCard {
             justify-content: flex-start;
@@ -269,14 +303,18 @@ $connection->close();
     .pass.field {
         margin-top: 2rem;
     }
+    
     }
+
 
 </style>
 <body>
     <div class="loginCard">
         <p class="title">BSIS GRADING SYSTEM</p>
         <p class="subtitle">Student Login</p>
-
+        <?php if (!empty($error_message)): ?>
+    <div id="error-message" class="error-message"><?php echo htmlspecialchars($error_message); ?></div>
+<?php endif; ?>
         <form method="POST" action="">
         <div class="user field">
             <div class="handle">
@@ -305,18 +343,16 @@ $connection->close();
         </div>
 
         <button type="submit">Login</button>
+        
+
         <div class="logoContainer">
 
         </div>
-
+    
 
 
 
         </form>
-        <div class="secret-login">
-        <button onclick="window.location.href='../admin/admin_login.php'">Go to Admin Login</button>
-
-</div>
     </div>
 </body>
 <script>
@@ -340,5 +376,20 @@ $connection->close();
             idInput.value = idInput.value.slice(0,4);
         }
     }
+    document.addEventListener('DOMContentLoaded', function() {
+    const errorMessage = document.querySelector('.error-message');
+
+    function showErrorMessage() {
+        errorMessage.classList.add('show');
+        setTimeout(() => {
+            errorMessage.classList.remove('show');
+        }, 3000); // Keep the message visible for 3 seconds before fading out
+    }
+
+    <?php if (!empty($error_message)): ?>
+        showErrorMessage();
+    <?php endif; ?>
+});
+
 </script>
 </html>
