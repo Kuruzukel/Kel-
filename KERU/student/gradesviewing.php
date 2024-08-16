@@ -191,15 +191,14 @@ body {
             margin: 0;
             padding: 0;
         }
-        .contents{
-            background: linear-gradient(to bottom, rgba(0, 13, 133, 0.7), rgba(175, 187, 3, 0.4)); /* Gradient shadow */
-
-        }
+        
         /* Hide main content initially */
         .main-content {
             display: none;
         }
-
+        .contents{
+                background-color: rgba(0, 13, 140, 1);
+            }
         /* Force landscape or desktop message */
         .force-landscape-message {
             display: block;
@@ -249,36 +248,55 @@ body {
             }
         }
         @media screen and (max-width: 1120px) and (orientation: portrait) {
-    body {
-        margin: 0;
-        padding: 0;
-        overflow: hidden;
-        
-    }
-    
-    .whole-content{
-        display: none;
-    }
-    .main-content {
-        display: none; /* Hide main content */
-    }
+            body {
+                margin: 0;
+                padding: 0;
+                overflow: hidden;
+            }
 
-    .force-landscape-message {
-        display: block;
-        position: relative;
-        top: 250px;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        text-align: center;
-        font-size: 18px;
-        font-weight: bold;
-        background-color: rgba(0, 0, 0, 0.7);
-        color: white;
-        padding: 20px;
-        border-radius: 10px;
-    }
-}
+            .whole-content, .main-content {
+                display: none;
+            }
+            .contents{
+                background-color: rgba(0, 13, 140, 1);
+            }
 
+            .force-landscape-message {
+                display: block;
+                position: relative;
+                top: 280px;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                font-size: 17px;
+                font-weight: bold;
+                background-color: rgba(255, 255, 255, 0.8);
+                color: black;
+                padding: 20px;
+                height: 500px;
+                border-radius: 20px;
+                overflow: hidden;
+            }
+
+            .force-landscape-message h2 {
+                font-size: 25px;
+                font-weight: bold;
+                text-align: center;
+                color: black;
+                margin-bottom: 10px;
+                margin-left: -30px;
+                margin-top: 40px;
+            }
+        }
+
+        @media screen and (min-width: 1120px) {
+            .force-landscape-message {
+                display: none;
+            }
+
+            .main-content {
+                display: block;
+            }
+        }
 @media screen and (min-width: 1120px) {
     .force-landscape-message {
         display: none; 
@@ -298,8 +316,11 @@ body {
 <body>
 <!-- <h1>Grades Viewing</h1> -->
 <div class="force-landscape-message">
-    Please rotate your device to landscape mode to view the content.
+    <h2 style="margin-top:80px;">⟬ Reminder ⟭</h2>
+    <p style="margin-top:30px;">Please rotate your device to landscape mode to view the content.</p>
+    <br><img style="width: 100px; height: 100px" src="../PP69.png" alt="">
 </div>
+
 <div class="whole-content">
 <div class="container">
 
