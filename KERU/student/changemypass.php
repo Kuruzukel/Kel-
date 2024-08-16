@@ -53,8 +53,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <title>Change Password</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        .contents{
-            background: linear-gradient(to bottom, rgba(0, 13, 133, 0.7), rgba(175, 187, 3, 0.4)); /* Gradient shadow */
+         .contents{
+            background-color: rgba(0, 13, 140, 1);
 
         }
         .error {
@@ -129,11 +129,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         @media screen and (max-width:550px) {
             button {
                 font-size: 10px;
-                width: 50%;
+                width: 80%;
             }
             input {
-                width: 200px;
+                width: 170px;
             }
+        }
+        @media screen and (max-width: 1120px) and (orientation: portrait) {
+            body {
+
+                
+            }
+            .toggle-password {
+            cursor: pointer;
+            position: absolute;
+            margin-left: -25px;
+            margin-top: 10px;
+        }
         }
     </style>
 </head>
