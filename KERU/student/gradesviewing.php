@@ -122,6 +122,15 @@ if ($student_id_result->num_rows > 0) {
     flex-direction: column;
     align-items: center;
     margin-top: 20px;
+    color: white;
+    
+}
+.container {
+    background-image: url('../PP5.png');
+    background-size: 100% 100%; /* Scales the image to fit the container exactly */
+    background-position: center;
+    background-color: rgba(211, 211, 211, 0.5);
+    border-radius: 20px;
 }
 
 form {
@@ -147,12 +156,20 @@ input[type="submit"] {
     padding: 0 10px;
     font-size: 1rem;
     cursor: pointer;
-    background-color: rgba(0, 13, 133, 1);
+    background-color: rgba(0, 0, 0, 1);
     color: white;
     border: none;
     border-radius: 5px;
+    width: 28%;
 }
-
+table{
+    color: white;
+}
+td{
+    
+    background-color: rgba(0, 0, 0, 0.7);
+    
+}
 .student-table {
     width: 100%;
     margin: 0 auto;
@@ -168,7 +185,7 @@ input[type="submit"] {
 }
 
 .student-table th {
-    background-color: #cfcfcf;
+    background-color: rgba(0, 0, 0, 1);
 }
 
 .grades-table {
@@ -184,9 +201,11 @@ input[type="submit"] {
 }
 
 .grades-table th {
-    background-color: #cfcfcf;
+ background-color: rgba(0, 0, 0, 1);
 }
-
+/* .acadfilter{
+    background-color: rgba(0, 0, 0, 1);
+} */
 body {
             margin: 0;
             padding: 0;
@@ -197,7 +216,7 @@ body {
             display: none;
         }
         .contents{
-                background-color: rgba(0, 13, 140, 1);
+            background-color: rgba(0, 13, 140, 1);
             }
         /* Force landscape or desktop message */
         .force-landscape-message {
@@ -214,7 +233,18 @@ body {
             padding: 20px;
             border-radius: 10px;
         }
-
+        /* .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('../PP5.png');
+            background-size: cover;
+            background-position: center;
+            filter: blur(3px); 
+            z-index: -1;
+        } */
         @media screen and (min-width: 1024px) {
             /* Show content only in desktop view (or landscape on large screens) */
             .main-content {
@@ -309,11 +339,62 @@ body {
     }
     
 }
+.acadfilter {
+    background-color: #f0f0f0; /* Light gray background color */
+    padding: 20px; /* Add some padding around the form */
+    border-radius: 8px; /* Optional: round the corners of the background */
+}
+/* Form container styling */
+.filter-form {
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    width: 50%;
+}
+
+/* Form group styling */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+label {
+    color: white;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+select {
+    height: 2.5rem;
+    padding: 5px;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+}
+
+/* Submit button styling */
+.submit-button {
+    height: 2.5rem;
+    padding: 0 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 1);
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
 
 
     </style>
 </head>
-<body>
+
 <!-- <h1>Grades Viewing</h1> -->
 <div class="force-landscape-message">
     <h2 style="margin-top:80px;">⟬ Reminder ⟭</h2>
@@ -322,11 +403,15 @@ body {
 </div>
 
 <div class="whole-content">
+
 <div class="container">
 
 
+
 <div class="flex-container">
-    <form method="GET" action="">
+    
+<form method="GET" action="" class="filter-form">
+    <div class="form-group">
         <label for="acadyear">Academic Year:</label>
         <select name="acadyear" id="acadyear">
             <?php while ($acadyear_row = $acadyear_result->fetch_assoc()) { ?>
@@ -335,8 +420,10 @@ body {
                 </option>
             <?php } ?>
         </select>
-
-        <br><label for="semester">Semester:</label>
+    </div>
+    
+    <div class="form-group">
+        <label for="semester">Semester:</label>
         <select name="semester" id="semester">
             <?php while ($semester_row = $semester_result->fetch_assoc()) { ?>
                 <option value="<?php echo htmlspecialchars($semester_row['semester']); ?>" <?php echo ($selected_semester == $semester_row['semester']) ? 'selected' : ''; ?>>
@@ -344,10 +431,14 @@ body {
                 </option>
             <?php } ?>
         </select>
+    </div>
+    
+    <input type="submit" value="Filter" class="submit-button">
+</form>
 
-        <input type="submit" value="Filter">
-    </form>
 
+            
+   
     <table class="student-table">
         <tr>
             <th>Student ID:</th>
